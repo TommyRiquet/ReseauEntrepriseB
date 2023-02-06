@@ -1,0 +1,36 @@
+name: Template
+description: Création d'une Issue
+title: "[<LABEL>]: <Titre>"
+labels: [""]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Formulaire de création d'une Issue
+
+  - type: textarea # Description de l'Issue
+    id: issue
+    attributes:
+      label: Description
+      description: Explique brievement l'Issue en indiquant le contexte.
+      placeholder : |
+        Pour le client Web , ajouter un système d'authentification afin de permettre aux utilisateurs de se connecter .
+    validations:
+      required: true
+
+  - type: textarea # Critères d'acceptation 
+    id: criteresacceptation
+    attributes:
+      label: Critères d'acceptation
+      description: Veuillez lister tous les critères d'acceptation.
+      placeholder : |
+        - [ ] Ajouter un formulaire de login.
+        - [ ] ...
+    validations:
+      required: true
+
+  - type: textarea # Prérequis
+    id: prerequis
+    attributes:
+      label: Prérequis
+
