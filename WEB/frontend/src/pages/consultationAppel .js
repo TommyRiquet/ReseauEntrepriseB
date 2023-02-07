@@ -7,6 +7,7 @@ class ConsultationAppel extends Component{
         super(props)
         this.state = {
             loading : true,
+            id : this.props.params,
             data : null,
             titre : null,
             auteur : null
@@ -15,9 +16,8 @@ class ConsultationAppel extends Component{
 
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
         async componentDidMount() {   
-            const {titre} = this.props.params;
-            const {auteur} = this.props.params;
-            const url1 = `http://141.94.26.80:5000/consultation/${titre}`;
+            const {id} = this.props.params;
+            const url1 = `http://141.94.26.80:5000/consultation/${id}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     

@@ -25,7 +25,7 @@ function Library() {
         <Row xs={1} md={2}>
           {formation.map((formation,index) => (
             <Col key={index}> 
-              <Card style={{ width: "100%" }} >
+              <Card style={{ width: "100%" }} onClick={e=>window.location.href='/consultation/'+formation.id}>
                 <Card.Body>
                   <Card.Title>Titre : {formation.titre}</Card.Title>
                   <Card.Text>Auteur : {formation.auteur}</Card.Text>

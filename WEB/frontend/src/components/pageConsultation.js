@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Library from '../pages/Library';
+import {useParams} from 'react-router-dom';
 
 
 class PageConsultation extends Component{
@@ -8,6 +8,7 @@ class PageConsultation extends Component{
         super(props)
         this.state = {
             loading : true,
+            id : this.props.params,
             data : this.props.data,
             titre : this.props.titre,
             auteur : this.props.auteur
@@ -31,5 +32,5 @@ class PageConsultation extends Component{
 
 }
 export default (props) => (
-    <PageConsultation {...props}/>
+    <PageConsultation {...props} params={useParams()}/>
 );
