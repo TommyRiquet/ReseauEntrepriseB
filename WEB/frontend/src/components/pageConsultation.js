@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Library from '../pages/Library';
 
 
-class pageConsultation extends Component{
+class PageConsultation extends Component{
 
     constructor(props){
         super(props)
@@ -21,8 +21,9 @@ class pageConsultation extends Component{
         return (
             <div>
                 <h1>{this.state.titre}</h1>
+                <h4>{this.state.auteur}</h4>
                 <p>{this.state.data}</p>
-                <button onClick={<Library></Library>}>retour aux formations</button>
+                <button onClick={e=>window.location.href='/bibli'}>retour à la bibliothèque</button>
             </div>
         );
     }
@@ -30,5 +31,5 @@ class pageConsultation extends Component{
 
 }
 export default (props) => (
-    <pageConsultation {...props}/>
+    <PageConsultation {...props}/>
 );
