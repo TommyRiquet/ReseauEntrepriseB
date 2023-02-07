@@ -5,9 +5,13 @@ import Error from "./pages/Error";
 import Library from './pages/Library';
 import Inscription from './pages/Inscription';
 import PageConsultation from './components/PageConsultation';
+import PageCreation from './components/PageCreation';
+import CreationAppel from './pages/CreationAppel';
+
 
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
@@ -18,6 +22,10 @@ function App() {
         <Route path="/inscription/:login" element={<Inscription />} />
         <Route path="/bibli" element={<Library />} />
         <Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
+        <Route path="/creation" element={<PageCreation />}/>
+        <Route path="/creationPost" element={<CreationAppel />}/>
+
+        
 
         {/* Lorsqu'aucune route n'a été trouvé */}
         <Route path="*" element={<Error />} />
