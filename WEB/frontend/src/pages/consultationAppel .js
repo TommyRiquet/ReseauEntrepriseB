@@ -21,7 +21,7 @@ class ConsultationAppel extends Component{
             const response1 = await fetch(url1);
             const data = await response1.json();
     
-            this.setState({loading : false, data : data, titre : titre, auteur : auteur}); 
+            this.setState({loading : false, data : data}); 
         }
         
         //appelle la classe qui affiche les informations si toutes les données sont arrivées, sinon afficher loading 
