@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import pageConsultation from './components/pageConsultation.js';
 import {useParams} from 'react-router-dom';
 
-class consultationAppel extends Component{
+class ConsultationAppel extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -31,7 +31,7 @@ class consultationAppel extends Component{
                 {this.state.loading || !this.state.data ? ( 
                     <div> Loading ... </div>
                 ) : (
-                    <pageConsultation data={this.state.data} titre={this.state.titre} auteur={this.state.auteur}/>  
+                    <PageConsultation data={this.state.data} titre={this.state.titre} auteur={this.state.auteur}/>  
                 )}
             </div>
                
@@ -42,6 +42,6 @@ class consultationAppel extends Component{
 
 
     export default (props) => (
-        <consultationAppel {...props} params={useParams()}/>
+        <ConsultationAppel {...props} params={useParams()}/>
     );
     
