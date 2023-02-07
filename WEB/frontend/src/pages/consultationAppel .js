@@ -1,34 +1,29 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import PageConsultation from './components/pageConsultation.js';
 import {useParams} from 'react-router-dom';
 
-class ConsultationAppel extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
+function ConsultationAppel(props) {
+        const [state,setState] = useState({
             loading : true,
-            id : this.props.params,
+            id : useParams(),
             data : null,
             titre : null,
             auteur : null
-        }
-    }
+        })
+    
 
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
-        async componentDidMount() {   
-            const {id} = this.props.params;
-            const url1 = `https://10.0.110.3:3001/consultation/${id}`;
-            const response1 = await fetch(url1);
-            const data = await response1.json();
+        useEffect(()=>{   
+            const data = fetch(`https://10.0.110.3:3001/consultation/${state.id}`).json();
     
-            this.setState({loading : false, data : data}); 
-        }
+            setState({loading : false, data : data, titre : "TestTitre", auteur : "Jean-Louis"}); 
+        // eslint-disable-next-line
+        },[])
         
         //appelle la classe qui affiche les informations si toutes les données sont arrivées, sinon afficher loading 
-        render(){
             return(
                 <div>
-                {this.state.loading || !this.state.data ? ( 
+                {state.loading || !state.data ? ( 
                     <div> Loading ... </div>
                 ) : (
                     <PageConsultation data={this.state.data} titre={this.state.titre} auteur={this.state.auteur}/>  
@@ -36,12 +31,8 @@ class ConsultationAppel extends Component{
             </div>
                
             )
-    
-        }
     }
 
 
-    export default (props) => (
-        <ConsultationAppel {...props} params={useParams()}/>
-    );
+    export default ConsultationAppel;
     
