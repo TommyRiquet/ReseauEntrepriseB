@@ -1,38 +1,34 @@
-import React, {Component} from 'react';
-import {useParams} from 'react-router-dom';
+import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
 
 
-class PageConsultation extends Component{
+function PageConsultation (props){
 
-    constructor(props){
-        super(props)
-        this.state = {
+        const [State] = useState({
             loading : true,
-            id : this.props.params,
-            data : this.props.data,
-            titre : this.props.titre,
-            auteur : this.props.auteur
-        }
-    }
+            data : props.data,
+            titre : props.titre,
+            auteur : props.auteur
+        })
 
     
     // render tout les éléments visible de la page (chapitre, quiz et bouton, notes obtenues)
-    render() { 
 
         return (
-            <div>
-                <h1 className="center-div" style={{margin:"20px 0"}}>{this.state.titre}</h1>
-                <h4 className="center-div" style={{margin:"20px 0"}}>{this.state.auteur}</h4>
-                <p>{this.state.data}</p>
-                <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'}>retour à la bibliothèque</Button>
-            </div>
+            <Container  className='center-container'>
+                <div className='form-layout'>
+                    <h1 className="center-div" style={{margin:"20px 0"}}>{State.titre}</h1>
+                    <h4 className="center-div" style={{margin:"20px 0"}}>{State.auteur}</h4>
+                    <div className="center-div" style={{margin:"20px 0"}}>
+                        {State.data}
+                    </div>
+                    <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'}>retour à la bibliothèque</Button>
+                </div>
+            </Container>
             
         );
-    }
 
 
 }
-export default (props) => (
-    <PageConsultation {...props} params={useParams()}/>
-);
+export default PageConsultation; 

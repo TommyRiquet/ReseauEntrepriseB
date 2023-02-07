@@ -17,11 +17,14 @@ import ConnexionAppel from './components/ConnexionAppel';
 
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CustomNavbar from './components/NavBar';
 
 
 
 function App() {
   return (
+    <>
+    <CustomNavbar/>
     <BrowserRouter className='center-container'>
       <Routes>
         <Route path="/" element={<Accueil />} />
@@ -45,6 +48,7 @@ function App() {
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
+    </>
   );
 }
 
