@@ -3,12 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors');//ajout
-const pool = require("./db/db");//ajout
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-// var registerRouter = require('./routes/register')//ajout
+var formationsRouter = require('./routes/formations')
 
 var app = express();
 
@@ -25,22 +24,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('register', registerRouter); //ajout
+app.use('/formations', formationsRouter);
 
 
-// GET ID return content
-
-// app.get("/formation/:id", (req, res) => {
+// //get all formations
+// app.get("/formations", async(req,res) => {
 //   try {
-//       const {id} = req.params;
-//       const formation =  pool.query("SELECT content FROM formations WHERE formation_id = $1;", 
-//       [id]
-//       );
-//       res.json(formations.rows[0]);
+//       const allFormations = await pool.query("SELECT * FROM formations;");
+//       res.json(allFormations.rows);
 //   } catch (err) {
 //       console.error(err.message);
 //    }
-// })
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
