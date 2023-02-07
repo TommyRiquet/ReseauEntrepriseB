@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Accueil />} />
         <Route path="/inscription/:login" element={<Inscription />} />
         <Route path="/bibli" element={<Library />} />
-        <Route path="/consultation" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
+        <Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
 
         {/* Lorsqu'aucune route n'a été trouvé */}
         <Route path="*" element={<Error />} />
