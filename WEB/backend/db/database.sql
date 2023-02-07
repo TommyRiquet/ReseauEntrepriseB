@@ -21,5 +21,10 @@ CREATE TABLE formations(
 
 INSERT INTO users(user_id, name, mail, password, role)
 VALUES
- (1, 'Armand','armand@gmail.com' ,'psw1', 'admin'),
+ (1, 'Armand','armand@gmail.com' ,'psw1', 'waiting'),
  (2, 'Hilaire','hilaire@gmail.com' , 'psw2', 'student');
+
+ INSERT INTO formations(formation_id, name, title, content)
+VALUES
+ (1, 'Armand', 'Math', 'ceci est un cours de math'),
+ (2, 'Hilaire', 'Francais', 'ceci est un cours de francais');
