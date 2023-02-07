@@ -28,6 +28,20 @@ app.use('/users', usersRouter);
 // app.use('register', registerRouter); //ajout
 
 
+// GET ID return content
+
+// app.get("/formation/:id", (req, res) => {
+//   try {
+//       const {id} = req.params;
+//       const formation =  pool.query("SELECT content FROM formations WHERE formation_id = $1;", 
+//       [id]
+//       );
+//       res.json(formations.rows[0]);
+//   } catch (err) {
+//       console.error(err.message);
+//    }
+// })
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

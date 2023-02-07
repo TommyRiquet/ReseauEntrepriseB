@@ -19,7 +19,7 @@ CREATE TABLE formations(
 
 
 
-INSERT INTO users(user_id, name, password, role)
+INSERT INTO users(user_id, name, mail, password, role)
 VALUES
- (1, 'Armand', 'psw1', 'admin'),
- (2, 'Hilaire', 'psw2', 'student');
+ (1, 'Armand','armand@gmail.com' ,'psw1', 'admin'),
+ (2, 'Hilaire','hilaire@gmail.com' , 'psw2', 'student');
