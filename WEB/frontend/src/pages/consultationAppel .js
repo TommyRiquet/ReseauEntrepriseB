@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import pageConsultation from './components/pageConsultation.js';
+import PageConsultation from './components/pageConsultation.js';
 import {useParams} from 'react-router-dom';
 
 class ConsultationAppel extends Component{
