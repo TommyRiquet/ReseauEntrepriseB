@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 
 class PageConsultation extends Component{
@@ -21,11 +22,12 @@ class PageConsultation extends Component{
 
         return (
             <div>
-                <h1>{this.state.titre}</h1>
-                <h4>{this.state.auteur}</h4>
+                <h1 className="center-div" style={{margin:"20px 0"}}>{this.state.titre}</h1>
+                <h4 className="center-div" style={{margin:"20px 0"}}>{this.state.auteur}</h4>
                 <p>{this.state.data}</p>
-                <button onClick={e=>window.location.href='/bibli'}>retour à la bibliothèque</button>
+                <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'}>retour à la bibliothèque</Button>
             </div>
+            
         );
     }
 
