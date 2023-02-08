@@ -42,20 +42,27 @@ router.get("/:role", async (req, res) => {
 })
 
 
-// // GET login et pwd  vérif
-// router.get("/login", async (req, res) => {
-//     const pseudoTry="Armand";
-//     const pwd= "psw1";
-//     try {
-//         const  pseudo =  await pool.query("SELECT name FROM users WHERE password= 'psw'", 
-//         [pwd],
-//         );
-//         //(res.json(pseudo)==pseudoTry)? res.send("gg"):res.send("raté");
-//         res.json(pseudo.rows)
-//     } catch (err) {
-//         console.error(err.message);
-//      }
-//   })
+router.get('/authentification', function(request, response) {
+  // Capture the input fields
+  let username = "Armand";
+  let password = "psw1";
+
+  // Execute SQL query that'll select the account from the database based on the specified username and password
+ const ans= pool.query('SELECT * FROM users WHERE name = $1 AND password = $2', [username, password], function(error, results, fields) {
+      // If there is an issue with the query, output the error
+      if (error) {console.log(error.message)};
+      // If the account exists
+      if (response.rows.length > 0) {
+          // Redirect to home page
+          response.send('gg');
+          response.json(response.rows);
+      } else {
+          response.send('Incorrect Username and/or Password!');
+      }
+      response.end();
+      });
+
+});
 
 
 //inscription --> post (pseudo, mail, mdp, statut<etu/form_att>) --> statut possible (etu/form_val/form_att/admin)
