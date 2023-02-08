@@ -83,7 +83,7 @@ function SigninForm() {
           
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="submit">S'inscrire</Button>
+              <Button type="submit" onClick={e=>window.location.href='/inscriptionAppel'}>S'inscrire</Button>
             </Col>
           </Form.Group>
         </Form>
