@@ -16,11 +16,14 @@ import AccueilServeur from './pages/AccueilServeur';
 
 
 
-
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from './components/NavBar';
+<<<<<<< Updated upstream
 import ConsultationAppel from './pages/ConsultationAppel';
+=======
+import ConsultationAppel from './pages/ConsultationAppel ';
+>>>>>>> Stashed changes
 
 //<Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
 

@@ -17,6 +17,11 @@ CREATE TABLE formations(
     FOREIGN KEY(name) REFERENCES users(name) ON DELETE CASCADE
 );
 
+CREATE TABLE sessions(
+    name VARCHAR(255) NOT NULL,
+    sessionUUID INT NOT NULL
+);
+
 
 
 INSERT INTO users(user_id, name, mail, password, role)
@@ -28,4 +33,9 @@ VALUES
 VALUES
  (1, 'Armand', 'Math', 'ceci est un cours de math'),
  (2, 'Hilaire', 'Francais', 'ceci est un cours de francais');
+
+
+ INSERT INTO sessions(name, sessionUUID) 
+ VALUES 
+ ('arnaud', 84154145);
 
