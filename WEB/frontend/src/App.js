@@ -10,6 +10,7 @@ import CreationAppel from './pages/CreationAppel';
 import LibraryFormateur from './components/LibraryFormateur';
 import LibraryAdmin from './components/LibraryAdmin';
 import FormateurAppel from './pages/FormateurAppel';
+import InscriptionAppel from './components/InscriptionAppel';
 
 
 
@@ -31,6 +32,8 @@ function App() {
         <Route path="/creation" element={<PageCreation />}/>
         <Route path="/creationPost/:titre/:auteur/:texte" element={<CreationAppel />}/>
         <Route path="/formateurValid" element={<FormateurAppel />}/>
+        <Route path="/inscriptionAppel" element={<InscriptionAppel />}/>
+
 
 
         
