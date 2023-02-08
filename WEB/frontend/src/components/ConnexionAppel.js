@@ -17,7 +17,7 @@ class ConnexionAppel extends Component{
         async componentDidMount() {   
             const {pseudo} = this.params.pseudo;
             const {mdp} = this.params.mdp;
-            const url1 = `http://141.94.26.80:5000/connection/${pseudo}/${mdp}`;
+            const url1 = `https://10.0.110.3:3001/connection/${pseudo}/${mdp}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     

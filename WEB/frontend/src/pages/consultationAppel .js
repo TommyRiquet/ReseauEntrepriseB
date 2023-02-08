@@ -17,7 +17,7 @@ class ConsultationAppel extends Component{
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
         async componentDidMount() {   
             const {id} = this.props.params;
-            const url1 = `http://141.94.26.80:5000/consultation/${id}`;
+            const url1 = `https://10.0.110.3:3001/consultation/${id}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     
