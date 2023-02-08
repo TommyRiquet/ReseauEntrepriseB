@@ -20,7 +20,7 @@ import AccueilServeur from './pages/AccueilServeur';
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from './components/NavBar';
-import ConsultationAppel from './pages/consultationAppel ';
+import ConsultationAppel from './pages/ConsultationAppel';
 
 //<Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
 
@@ -31,8 +31,7 @@ function App() {
     <CustomNavbar/>
     <BrowserRouter className='center-container'>
       <Routes>
-        <Route path="/" element={<AccueilServeur />} />
-        <Route path="/accueil" element={<Accueil />} />
+        <Route path="/" element={<Accueil />} />
         <Route path="/inscription/:login" element={<Inscription />} />
         <Route path="/bibli" element={<Library />} />
         <Route path="/bibliFormateur" element={<LibraryFormateur />} />
