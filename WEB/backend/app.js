@@ -27,15 +27,6 @@ app.use('/users', usersRouter);
 app.use('/formations', formationsRouter);
 
 
-// //get all formations
-// app.get("/formations", async(req,res) => {
-//   try {
-//       const allFormations = await pool.query("SELECT * FROM formations;");
-//       res.json(allFormations.rows);
-//   } catch (err) {
-//       console.error(err.message);
-//    }
-// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

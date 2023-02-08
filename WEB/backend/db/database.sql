@@ -14,7 +14,7 @@ CREATE TABLE formations(
     name VARCHAR(255) NOT NULL UNIQUE,
     title VARCHAR(255) NOT NULL,
     content VARCHAR NOT NULL,
-    FOREIGN KEY(name) REFERENCES users(name)
+    FOREIGN KEY(name) REFERENCES users(name) ON DELETE CASCADE
 );
 
 
@@ -28,3 +28,4 @@ VALUES
 VALUES
  (1, 'Armand', 'Math', 'ceci est un cours de math'),
  (2, 'Hilaire', 'Francais', 'ceci est un cours de francais');
+
