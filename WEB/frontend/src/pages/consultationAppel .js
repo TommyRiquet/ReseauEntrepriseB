@@ -8,7 +8,8 @@ function ConsultationAppel(props) {
             id : useParams(),
             data : null,
             titre : null,
-            auteur : null
+            auteur : null,
+            statur : 'Admin' // authentification
         })
     
 

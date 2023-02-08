@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
-import Library from './Library.js';
+import Button from 'react-bootstrap/Button';
 
 class CreationAppel extends Component{
     constructor(props){
         super(props)
         this.state = {
             loading : true,
+            statut : 'Admin' // authentification
 
         }
     }
@@ -27,8 +28,8 @@ class CreationAppel extends Component{
         render(){
             return(
                 <div>
-                    <Library/> 
-                </div> 
+                    <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'+this.state.statut}>retour à la bibliothèque</Button>
+                </div>
             )
         }
     }

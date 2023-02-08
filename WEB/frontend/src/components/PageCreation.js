@@ -9,9 +9,10 @@ class PageCreation extends Component{
         super(props)
         this.state = {
             loading : true,
-            auteur : this.props.auteur,
+            auteur : this.props.auteur,//rechercher authentification
             titre : null,
-            texte : null
+            texte : null,
+            statut : 'Admin' //authentification
         }
     }
 
@@ -31,7 +32,7 @@ class PageCreation extends Component{
                         <textarea name="Text2"  cols="100" rows="20" onChange={e => this.setState({texte: e.target.value})}></textarea>
                     </div>
                 </Form>
-                <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'}>retour à la bibliothèque sans sauver</Button>
+                <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'+this.state.statut}>retour à la bibliothèque sans sauver</Button>
                 <Button variant="outline-danger" onClick={e=>window.location.href='/creationPost/'+this.state.titre+'/'+this.state.auteur+'/'+this.state.texte}>sauver</Button>
 
 
