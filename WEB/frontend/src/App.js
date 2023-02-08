@@ -11,6 +11,7 @@ import LibraryFormateur from './components/LibraryFormateur';
 import LibraryAdmin from './components/LibraryAdmin';
 import FormateurAppel from './pages/FormateurAppel';
 import InscriptionAppel from './components/InscriptionAppel';
+import ConnexionAppel from './components/ConnexionAppel';
 
 
 
@@ -32,7 +33,9 @@ function App() {
         <Route path="/creation" element={<PageCreation />}/>
         <Route path="/creationPost/:titre/:auteur/:texte" element={<CreationAppel />}/>
         <Route path="/formateurValid" element={<FormateurAppel />}/>
-        <Route path="/inscriptionAppel" element={<InscriptionAppel />}/>
+        <Route path="/inscriptionAppel/:pseudo/:mail/:mdp/:statut" element={<InscriptionAppel />}/>
+        <Route path="/connexionAppel/:pseudo/:mdp" element={<ConnexionAppel />}/>
+
 
 
 
