@@ -30,6 +30,26 @@ router.get("/", async(req,res) => {
 })
 
 
+//livre --> post (titre, pseudo, texte)
+router.post("/postFormations", (req,res) => {
+    var name= "Bob"
+    var title= " Un titre"
+    var content= "du content"
+  try {
+      const newFormation = pool.query(
+          "INSERT INTO formations (name, title, content) VALUES ($1,$2,$3)",
+          [name,title,content], ()=>{
+            res.send('well done');
+
+          }
+          );
+
+  } catch (err) {
+      console.error(err.message);
+   }
+});
+
+
 
 
 module.exports = router;
