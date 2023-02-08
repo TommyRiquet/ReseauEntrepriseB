@@ -1,16 +1,37 @@
 import React, { useState } from 'react';
-import {Button,Form, Row, Col} from 'react-bootstrap';
+import {Button,Form, Row, Col, InputGroup} from 'react-bootstrap';
 //import * as Yup from 'yup';
 
 function SigninForm() {
-  const [validated, setValidated] = useState(false);
+  const [validated, setValidated] = useState(false); // ????
 
-  /*const handleSubmit = (event) => {
+  function handleSubmit(event){
+    event.preventDefault();
+    event.stopPropagation();
     const form = event.currentTarget;
+    //event.preventDefault();
+    const email = event.target['formHorizontalEmail'].value;
+    const pseudo = event.target['formHorizontalPseudo'].value;
+    const password = event.target['formHorizontalPassword'].value;
+    const confirmPassword = event.target['formHorizontalConfirmPassword'].value;
+    let role = "student"
+    if (event.target['former'].checked){
+      role = "former"
+    }
+    
+    if (password != confirmPassword){
+
+    }
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    }*/
+    }
+
+    const tab = {pseudo, email, password, confirmPassword, role};
+    console.log(tab)
+
+
+  
 
     //pour validation du mot de passe 
     // !!! VALIDATION PAS ENCORE FONCTIONELLE !!!
@@ -22,10 +43,11 @@ function SigninForm() {
 
     /*setValidated(true);
   };*/
+}
   
   return (
       <>
-        <Form>
+        <Form onSubmit={handleSubmit} noValidate>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
             <Form.Label column sm={2}>
               Adresse mail
@@ -34,7 +56,7 @@ function SigninForm() {
               <Form.Control required type="email" placeholder="Email" />
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
+          <Form.Group as={Row} className="mb-3" controlId="formHorizontalPseudo">
             <Form.Label column sm={2}>
               Pseudo
             </Form.Label>
@@ -58,9 +80,13 @@ function SigninForm() {
             <Col sm={5}>
               <Form.Control required type="password" placeholder="Mot de passe" />
             </Col>
+          
+            <Form.Control.Feedback type="invalid">
+              Please provide a valid state.
+            </Form.Control.Feedback>
           </Form.Group>
           <fieldset>
-            <Form.Group as={Row} className="mb-3">
+            <Form.Group as={Row} className="mb-3" controlId="formHorizontalRole">
               <Form.Label as="legend" column sm={2}>
                 Rôle
               </Form.Label>
@@ -80,10 +106,9 @@ function SigninForm() {
               </Col>
             </Form.Group>
           </fieldset>
-          
           <Form.Group as={Row} className="mb-3">
             <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="submit" onClick={e=>window.location.href='/inscriptionAppel'}>S'inscrire</Button>
+              <Button type="submit">S'inscrire</Button>
             </Col>
           </Form.Group>
         </Form>
