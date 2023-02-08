@@ -32,9 +32,9 @@ router.get("/", async(req,res) => {
 
 //livre --> post (titre, pseudo, texte)
 router.post("/postFormations", (req,res) => {
-    var name= "Bob"
-    var title= " Un titre"
-    var content= "du content"
+    var name= req.body
+    var title= req.body
+    var content= req.body
   try {
       const newFormation = pool.query(
           "INSERT INTO formations (name, title, content) VALUES ($1,$2,$3)",
