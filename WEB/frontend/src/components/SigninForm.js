@@ -5,12 +5,12 @@ import {Button,Form, Row, Col} from 'react-bootstrap';
 function SigninForm() {
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
+  /*const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    }
+    }*/
 
     //pour validation du mot de passe 
     // !!! VALIDATION PAS ENCORE FONCTIONELLE !!!
@@ -20,8 +20,8 @@ function SigninForm() {
          .oneOf([Yup.ref('password'), null], 'Passwords must match')
     });*/ 
 
-    setValidated(true);
-  };
+    /*setValidated(true);
+  };*/
   
   return (
       <>
@@ -51,7 +51,6 @@ function SigninForm() {
               <Form.Control required type="password" placeholder="Mot de passe" />
             </Col>
           </Form.Group>
-          <Form.group as={Row} className="mb-3" controlId="formHorizontalPasswordVerif"></Form.group>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalConfirmPassword">
             <Form.Label column sm={2}>
              Confirmez le Mot de passe
