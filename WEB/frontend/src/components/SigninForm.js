@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import {Button,Form, Row, Col, Container} from 'react-bootstrap';
 //import * as Yup from 'yup';
+import ReCAPTCHA from "react-google-recaptcha";
 
 function SigninForm() {
   const [validated, setValidated] = useState(false);
@@ -8,11 +9,22 @@ function SigninForm() {
   const password = useRef(null);
   const confirmPassword = useRef(null);
 
+  const recaptchaRef = useRef(null);
+  const publicCaptchaKey = "6LfoamMkAAAAAIoxks9JWXMX4TJWJCrfo1tYjRRF";
+
+  
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+    }
+
+    const pseudo = event.target["formHorizontalPseudo"].value;
+
+    if(pseudo.current.value && password.current.value) {
+      const token = recaptchaRef.current.executeAsync();
+      recaptchaRef.current.reset();
     }
 
     setValidated(true);
@@ -93,6 +105,7 @@ function SigninForm() {
               </Col>
             </Form.Group>
           </fieldset>
+          <ReCAPTCHA ref={recaptchaRef} sitekey={publicCaptchaKey} size='invisible'/>
           <Form.Group as={Row} className="mb-3">
             <Col className='center-div'>
               <Button type="submit" variant="danger">S'inscrire</Button>
