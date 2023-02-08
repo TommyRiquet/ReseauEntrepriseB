@@ -2,26 +2,22 @@ import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
 import FormateurValid from '../components/FormateurValid';
 
-class InscriptionAppel extends Component{
+class ConnexionAppel extends Component{
     constructor(props){
         super(props)
         this.state = {
             loading : true,
             pseudo : null,
-            mail : null,
             mdp : null,
-            statut : null,
-            data : null
+            data : null,
         }
     }
 
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
         async componentDidMount() {   
             const {pseudo} = this.params.pseudo;
-            const {mail} = this.params.mail;
             const {mdp} = this.params.mdp;
-            const {statut} = this.params.statut;
-            const url1 = `http://141.94.26.80:5000/inscription/${pseudo}/${mail}/${mdp}/${statut}`;
+            const url1 = `http://141.94.26.80:5000/connection/${pseudo}/${mdp}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     
@@ -35,7 +31,7 @@ class InscriptionAppel extends Component{
                     {this.state.loading || !this.state.data ? ( 
                     <div> Loading ... </div>
                 ) : (
-                    <p>touver un moyen de rediriger vers bibli direct</p>  
+                    <p>rediriger selon utilisateur vers bibli</p>
                 )}
                 </div>
                
@@ -46,6 +42,6 @@ class InscriptionAppel extends Component{
 
 
     export default (props) => (
-        <InscriptionAppel {...props} params={useParams()}/>
+        <ConnexionAppel {...props} params={useParams()}/>
     );
     
