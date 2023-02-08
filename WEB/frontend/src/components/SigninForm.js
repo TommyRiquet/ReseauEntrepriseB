@@ -1,103 +1,90 @@
-import React, { useState } from 'react';
-import {Button,Form, Row, Col, InputGroup} from 'react-bootstrap';
+import React, { useState, useRef } from 'react';
+import {Button,Form, Row, Col, Container} from 'react-bootstrap';
 //import * as Yup from 'yup';
 
 function SigninForm() {
-  const [validated, setValidated] = useState(false); // ????
+  const [validated, setValidated] = useState(false);
 
-  function handleSubmit(event){
-    event.preventDefault();
-    event.stopPropagation();
+  const password = useRef(null);
+  const confirmPassword = useRef(null);
+
+  const handleSubmit = (event) => {
     const form = event.currentTarget;
-    //event.preventDefault();
-    const email = event.target['formHorizontalEmail'].value;
-    const pseudo = event.target['formHorizontalPseudo'].value;
-    const password = event.target['formHorizontalPassword'].value;
-    const confirmPassword = event.target['formHorizontalConfirmPassword'].value;
-    let role = "student"
-    if (event.target['former'].checked){
-      role = "former"
-    }
-    
-    if (password != confirmPassword){
-
-    }
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
 
-    const tab = {pseudo, email, password, confirmPassword, role};
-    console.log(tab)
+    setValidated(true);
+  };
 
-
-  
-
-    //pour validation du mot de passe 
-    // !!! VALIDATION PAS ENCORE FONCTIONELLE !!!
-    /*validationSchema: Yup.object({
-      password: Yup.string().required('Password is required'),
-      passwordConfirmation: Yup.string()
-         .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    });*/ 
-
-    /*setValidated(true);
-  };*/
-}
+  function handleChangePassword(event){
+    console.log(event)
+    if (confirmPassword.current.value === password.current.value) {
+      return event.target.setCustomValidity("");
+  }
+  return event.target.setCustomValidity("Password and confirm password don't match");
+  };
+ 
   
   return (
       <>
-        <Form onSubmit={handleSubmit} noValidate>
+      <Container className='center-container'>
+        <div className='form-layout'>
+      <h1>Inscription</h1>
+        <Form onSubmit={handleSubmit} noValidate validated={validated}>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
-            <Form.Label column sm={2}>
+            <Form.Label>
               Adresse mail
             </Form.Label>
-            <Col sm={5}>
-              <Form.Control required type="email" placeholder="Email" />
+            <Col>
+              <Form.Control required type="email" placeholder="Email"/>
+              <Form.Control.Feedback type={'invalid'}>Veuillez entrer une email correcte!</Form.Control.Feedback>
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalPseudo">
-            <Form.Label column sm={2}>
+            <Form.Label>
               Pseudo
             </Form.Label>
-            <Col sm={5}>
-              <Form.Control required type="text" placeholder="pseudo" />
+            <Col>
+              <Form.Control required type="text" placeholder="Pseudo" />
+              <Form.Control.Feedback type={'invalid'}>Veuillez entrer un pseudo correcte!</Form.Control.Feedback>
             </Col>
           </Form.Group>
 
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
-            <Form.Label column sm={2}>
+            <Form.Label>
               Mot de passe
             </Form.Label>
-            <Col sm={5}>
-              <Form.Control required type="password" placeholder="Mot de passe" />
+            <Col>
+              <Form.Control required type="password" placeholder="Mot de passe" ref={password} minLength={8} maxLength={64} />
+              <Form.Control.Feedback type={'invalid'}>Veuillez entrer un mot de passe!</Form.Control.Feedback>
             </Col>
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formHorizontalConfirmPassword">
-            <Form.Label column sm={2}>
+            <Form.Label>
              Confirmez le Mot de passe
             </Form.Label>
-            <Col sm={5}>
-              <Form.Control required type="password" placeholder="Mot de passe" />
+            <Col >
+              <Form.Control required type="password" placeholder="Mot de passe" ref={confirmPassword} minLength={8} maxLength={64} onChange={handleChangePassword}/>
+              <Form.Control.Feedback type={'invalid'}>Veuillez confirmer le mot de passe!</Form.Control.Feedback>
             </Col>
           
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid state.
-            </Form.Control.Feedback>
           </Form.Group>
           <fieldset>
             <Form.Group as={Row} className="mb-3" controlId="formHorizontalRole">
-              <Form.Label as="legend" column sm={2}>
+            <Col className='center-div'>
+              <Form.Label as="legend" >
                 Rôle
               </Form.Label>
-              <Col sm={10}>
-                <Form.Check required
+                <Form.Check
                   type="radio"
                   label="étudiant"
                   name="formHorizontalRadios"
                   id="student"
+                  defaultChecked={true}
                 />
-                <Form.Check required
+                <Form.Check
                   type="radio"
                   label="formateur"
                   name="formHorizontalRadios"
@@ -107,11 +94,13 @@ function SigninForm() {
             </Form.Group>
           </fieldset>
           <Form.Group as={Row} className="mb-3">
-            <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="submit">S'inscrire</Button>
+            <Col className='center-div'>
+              <Button type="submit" variant="danger">S'inscrire</Button>
             </Col>
           </Form.Group>
         </Form>
+        </div>
+        </Container>
       </>
     );
   }
