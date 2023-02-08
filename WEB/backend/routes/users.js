@@ -61,12 +61,14 @@ router.get("/:role", async (req, res) => {
 //inscription --> post (pseudo, mail, mdp, statut<etu/form_att>) --> statut possible (etu/form_val/form_att/admin)
 router.post("/register", async(req,res) => {
     try {
-          var name ='Manon';
-          var password=await argon.hash(req.body.password);
-          var mail='manon@hotmail.com'
-          var role='Former'
-
-        const newUser = await pool.query('INSERT INTO users (name,password,mail,role) VALUES ($1,$2,$3,$4)', [name,password,mail,role]);
+          var name = req.body
+          var password= req.body
+          var mail= req.body
+          var role= req.body
+        const newFormation = await pool.query(
+            'INSERT INTO users (name,password,mail,role) VALUES ($1,$2,$3,$4)',
+            [name,password,mail,role]
+            );
   
             res.json(newFormation.rows);
     } catch (err) {
@@ -78,7 +80,7 @@ router.post("/register", async(req,res) => {
   //update le role en former
   router.put("/update", async (req, res) => {
     try {
-        id = 2;
+        const id = req.body;
         const updateUser = await pool.query("UPDATE users SET role = 'Former' WHERE user_id = $1",
         [id]
         );
@@ -92,7 +94,7 @@ router.post("/register", async(req,res) => {
   //update le role en student (enleve les perm)
   router.put("/update", async (req, res) => {
     try {
-        id = 2;
+        const id = req.body;
         const updateUser = await pool.query("UPDATE users SET role = 'Student' WHERE user_id = $1",
         [id]
         );
