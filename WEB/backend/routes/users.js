@@ -63,7 +63,7 @@ router.post("/register", async(req,res) => {
   });
 
 
-  //update le role
+  //update le role en former
   router.put("/update", async (req, res) => {
     try {
         id = 2;
@@ -77,14 +77,14 @@ router.post("/register", async(req,res) => {
 })
 
 
-//delete a student
-router.delete("/delete", async (req, res) => {
+  //update le role en student (enleve les perm)
+  router.put("/update", async (req, res) => {
     try {
-        const id = 2;
-        const deleteUser = await pool.query("DELETE FROM users CASCADE WHERE user_id = $1",
+        id = 2;
+        const updateUser = await pool.query("UPDATE users SET role = 'Student' WHERE user_id = $1",
         [id]
         );
-        res.json("User was deleted!")
+        res.json("Users was updated");
     } catch (err) {
         console.error(err.message);
      }
