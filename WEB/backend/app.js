@@ -17,9 +17,13 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(cors());//ajout
+app.use(cors({
+  credentials: true
+}));//ajout
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(
+  secret="4553e8b9fe1d1642893b4046c952400cd33e1e98e1572507f846282af423f808671482f40900ecb653d4f5a35812c0f22f56548e402df9f9aa3c721ee5dc8c61"
+));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
