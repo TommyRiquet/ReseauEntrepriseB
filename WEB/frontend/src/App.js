@@ -20,7 +20,9 @@ import AccueilServeur from './pages/AccueilServeur';
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from './components/NavBar';
+import ConsultationAppel from './pages/consultationAppel ';
 
+//<Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
 
 
 function App() {
@@ -35,7 +37,7 @@ function App() {
         <Route path="/bibli" element={<Library />} />
         <Route path="/bibliFormateur" element={<LibraryFormateur />} />
         <Route path="/bibliAdmin" element={<LibraryAdmin />} />
-        <Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
+        <Route path="/consultation/:id" element={<ConsultationAppel />} />
         <Route path="/creation" element={<PageCreation />}/>
         <Route path="/creationPost/:titre/:auteur/:texte" element={<CreationAppel />}/>
         <Route path="/formateurValid" element={<FormateurAppel />}/>
