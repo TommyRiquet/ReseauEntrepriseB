@@ -12,6 +12,8 @@ import LibraryAdmin from './components/LibraryAdmin';
 import FormateurAppel from './pages/FormateurAppel';
 import InscriptionAppel from './components/InscriptionAppel';
 import ConnexionAppel from './components/ConnexionAppel';
+import AccueilServeur from './pages/AccueilServeur';
+
 
 
 
@@ -27,7 +29,8 @@ function App() {
     <CustomNavbar/>
     <BrowserRouter className='center-container'>
       <Routes>
-        <Route path="/" element={<Accueil />} />
+        <Route path="/" element={<AccueilServeur />} />
+        <Route path="/accueil" element={<Accueil />} />
         <Route path="/inscription/:login" element={<Inscription />} />
         <Route path="/bibli" element={<Library />} />
         <Route path="/bibliFormateur" element={<LibraryFormateur />} />

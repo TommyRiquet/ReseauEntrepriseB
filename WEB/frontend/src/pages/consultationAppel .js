@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PageConsultation from './components/pageConsultation.js';
 import {useParams} from 'react-router-dom';
+import config from '../config.json';
 
 function ConsultationAppel(props) {
         const [state,setState] = useState({
@@ -15,7 +16,7 @@ function ConsultationAppel(props) {
 
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
         useEffect(()=>{   
-            const data = fetch(`https://10.0.110.3:3001/consultation/${state.id}`).json();
+            const data = fetch(`https://${config.API_URL}:3001/consultation/${state.id}`).json();
     
             setState({loading : false, data : data, titre : "TestTitre", auteur : "Jean-Louis"}); 
         // eslint-disable-next-line
