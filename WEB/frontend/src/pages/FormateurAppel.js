@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
-import Library from './Library.js';
+import FormateurValid from '../components/FormateurValid';
 
-class CreationAppel extends Component{
+class FormateurAppel extends Component{
     constructor(props){
         super(props)
         this.state = {
             loading : true,
-
+            data : null,
+            auteur : null
         }
     }
 
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
         async componentDidMount() {   
-            const {titre} = this.params.titre;
-            const {auteur} = this.params.auteur;
-            const {texte} = this.params.texte;
-            const url1 = `http://141.94.26.80:5000/creationPost/${titre}/${auteur}/${texte}`;
+            const url1 = `http://141.94.26.80:5000/getFormateur`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     
@@ -27,14 +25,20 @@ class CreationAppel extends Component{
         render(){
             return(
                 <div>
-                    <Library/> 
-                </div> 
+                {this.state.loading || !this.state.data ? ( 
+                    <div> Loading ... </div>
+                ) : (
+                    <FormateurValid data={this.state.data}/>  
+                )}
+            </div>
+               
             )
+    
         }
     }
 
 
     export default (props) => (
-        <CreationAppel {...props} params={useParams()}/>
+        <FormateurAppel {...props} params={useParams()}/>
     );
     
