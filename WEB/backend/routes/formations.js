@@ -20,7 +20,7 @@ router.get("/", async(req,res) => {
   router.get("/:id", async (req, res) => {
     try {
         const id = req.params.id;
-        const formation = await pool.query('SELECT content FROM formations WHERE formation_id = $1;',
+        const formation = await pool.query('SELECT * FROM formations WHERE formation_id = $1;',
         [id]
         );
         res.json(formation.rows);

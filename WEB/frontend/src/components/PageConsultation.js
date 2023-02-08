@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
 
@@ -7,14 +7,16 @@ function PageConsultation (props){
 
         const [State] = useState({
             loading : true,
-            id : this.props.params,
-            data : this.props.data,
-            titre : this.props.titre,
-            auteur : this.props.auteur,
-            statut : 'Admin' //authentification
-        
+            data : props.data,
+            titre : props.titre,
+            auteur : props.auteur,
+            statut : '' //anthentification
         })
-
+        
+        useEffect(()=>{
+            console.log(State)
+        },[State])
+        
     
     // render tout les éléments visible de la page (chapitre, quiz et bouton, notes obtenues)
 
