@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import config from '../config.json';
 
 class CreationAppel extends Component{
     constructor(props){
         super(props)
         this.state = {
+            ip : null,
             loading : true,
             statut : 'Admin' // authentification
 
@@ -17,7 +19,7 @@ class CreationAppel extends Component{
             const {titre} = this.params.titre;
             const {auteur} = this.params.auteur;
             const {texte} = this.params.texte;
-            const url1 = `https://10.0.110.3:3001/creationPost/${titre}/${auteur}/${texte}`;
+            const url1 = `https://${config.API_URL}:3001/creationPost/${titre}/${auteur}/${texte}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     

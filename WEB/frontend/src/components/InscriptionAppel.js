@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
 import FormateurValid from '../components/FormateurValid';
+import config from '../config.json';
 
 class InscriptionAppel extends Component{
     constructor(props){
@@ -21,7 +22,7 @@ class InscriptionAppel extends Component{
             const {mail} = this.params.mail;
             const {mdp} = this.params.mdp;
             const {statut} = this.params.statut;
-            const url1 = `https://10.0.110.3:3001/inscription/${pseudo}/${mail}/${mdp}/${statut}`;
+            const url1 = `https://${config.API_URL}:3001/inscription/${pseudo}/${mail}/${mdp}/${statut}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     

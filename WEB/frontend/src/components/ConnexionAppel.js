@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {useParams} from 'react-router-dom';
 import FormateurValid from '../components/FormateurValid';
+import config from '../config.json';
 
 class ConnexionAppel extends Component{
     constructor(props){
@@ -17,7 +18,7 @@ class ConnexionAppel extends Component{
         async componentDidMount() {   
             const {pseudo} = this.params.pseudo;
             const {mdp} = this.params.mdp;
-            const url1 = `https://10.0.110.3:3001/connection/${pseudo}/${mdp}`;
+            const url1 = `https://${config.API_URL}:3001/connection/${pseudo}/${mdp}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     
