@@ -1,0 +1,25 @@
+FROM ubuntu:bionic 
+#image ubuntu
+
+#mise a jour image et installation de bind9 
+RUN apt update && apt full-upgrade -y && \
+    apt install bind9 bind9utils dnsutils net-tools nano -y
+
+# activation IPv4
+RUN sed -i 's/OPTIONS=.*/OPTIONS="-4 -u bind"/' /etc/default/bind9
+
+# copie des fichiers de configuration de la machine locale vers image docker
+COPY named.conf /etc/bind/ 
+COPY db.fr.brainwash-corp.org /etc/bind/ 
+
+
+
+#ouverture du port 53 en udp de image
+EXPOSE 953/tcp
+EXPOSE 953/udp
+EXPOSE 53/udp 
+
+
+
+#demarrage du serveur dns 
+CMD ["named", "-c", "/etc/bind/named.conf", "-g"]
