@@ -4,10 +4,10 @@ const pool = require("../db/db");
 
 
 
-//get all formations
+//get all formations, return name and title
 router.get("/", async(req,res) => {
     try {
-        const allFormations = await pool.query("SELECT * FROM formations;");
+        const allFormations = await pool.query("SELECT name,title FROM formations ORDER BY title;");
         res.json(allFormations.rows);
     } catch (err) {
         console.error(err.message);
