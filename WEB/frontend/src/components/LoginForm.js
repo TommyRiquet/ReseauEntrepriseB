@@ -3,6 +3,8 @@ import {Button,Form, Row, Col,Container} from 'react-bootstrap';
 
 import salt from '../salt';
 import sha512 from 'js-sha512';
+import config from "../config";
+
 
 function LoginForm() {
 
@@ -10,7 +12,7 @@ function LoginForm() {
   function handleClick(e) {
     e.preventDefault();
     
-    fetch('http://localhost:3001/users/authentification', {
+    fetch(config.API_URL+'/users/authentification', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

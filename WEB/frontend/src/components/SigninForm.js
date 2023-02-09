@@ -5,6 +5,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import salt from '../salt';
 import sha512 from 'js-sha512';
+import config from '../config';
 
 function SigninForm() {
   const [validated, setValidated] = useState(false);
@@ -31,7 +32,7 @@ function SigninForm() {
     }
 
     setValidated(true);
-    fetch('http://localhost:3001/users/register', {
+    fetch(config.API_URL+'/users/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

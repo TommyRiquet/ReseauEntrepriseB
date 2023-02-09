@@ -15,7 +15,7 @@ class FormateurAppel extends Component{
 
         //appelle les données nécessaire a l'affichage de la page de cours coté élèves
         async componentDidMount() {   
-            const url1 = `https://${config.API_URL}:3001/getFormateur`;
+            const url1 = `${config.API_URL}/getFormateur`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     
