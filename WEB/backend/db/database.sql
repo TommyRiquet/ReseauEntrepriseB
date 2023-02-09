@@ -19,7 +19,7 @@ CREATE TABLE formations(
 
 CREATE TABLE sessions(
     name VARCHAR(255) NOT NULL,
-    sessionUUID INT NOT NULL
+    sessionUUID UUID NOT NULL
 );
 
 
@@ -33,9 +33,3 @@ VALUES
 VALUES
  (1, 'Armand', 'Math', 'ceci est un cours de math'),
  (2, 'Hilaire', 'Francais', 'ceci est un cours de francais');
-
-
- INSERT INTO sessions(name, sessionUUID) 
- VALUES 
- ('arnaud', 84154145);
-
