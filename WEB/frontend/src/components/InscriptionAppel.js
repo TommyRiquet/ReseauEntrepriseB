@@ -22,7 +22,7 @@ class InscriptionAppel extends Component{
             const {mail} = this.params.mail;
             const {mdp} = this.params.mdp;
             const {statut} = this.params.statut;
-            const url1 = `https://${config.API_URL}:3001/inscription/${pseudo}/${mail}/${mdp}/${statut}`;
+            const url1 = `https://${config.API_URL}/inscription/${pseudo}/${mail}/${mdp}/${statut}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     

@@ -19,7 +19,7 @@ class CreationAppel extends Component{
             const {titre} = this.params.titre;
             const {auteur} = this.params.auteur;
             const {texte} = this.params.texte;
-            const url1 = `https://${config.API_URL}:3001/creationPost/${titre}/${auteur}/${texte}`;
+            const url1 = `${config.API_URL}/creationPost/${titre}/${auteur}/${texte}`;
             const response1 = await fetch(url1);
             const data = await response1.json();
     
