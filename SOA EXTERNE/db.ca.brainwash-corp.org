@@ -1,1 +1,17 @@
-
+$ORIGIN ca.brainwash-corp.org.
+$TTL  604800
+@     IN      SOA      ns.ca.brainwash-corp.org. admin.fr.brainwash-corp.org. (
+                                  2021060809         ; Serial
+                                  43200      ; Refresh
+                                  7100      ; Retry
+                                  2419200     ; Expire
+                                  86300 )    ; Negative Cache TTL
+;
+@           IN     NS      ns.ca.brainwash-corp.org.
+@           IN     MX      10 relais
+;
+ns          IN      A       193.190.65.84
+reverse-proxy         IN      A       193.190.65.84
+relais 	IN	A		193.190.65.84
+;
+;
