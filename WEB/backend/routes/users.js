@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const pool = require("../db/db");
-const argon = require("argon2");
+const argon2 = require("argon2");
 const crypto = require("crypto");
 
 const validation= require('../validation/registerAndLoginValidation.js')
@@ -67,7 +67,7 @@ const whoIsConnected = async (cookie) => {
   if (Object.keys(cookie).length === 0){
     return false
   }
-  const result = await pool.query("SELECT name FROM session WHERE sessionUUID = ?", [cookie.sessionId])
+  const result = await pool.query("SELECT name FROM session WHERE sessionUUID = $1", [cookie.sessionId])
   if (result.rows.pseudo === null){
     return false
   }
@@ -118,6 +118,29 @@ router.get("/formerValidation", async (req, res) => {
       });
 
 });*/
+      
+
+//inscription --> post (pseudo, mail, mdp, statut<etu/form_att>) --> statut possible (etu/form_val/form_att/admin)
+router.post("/register", async(req,res) => {
+    try {
+          var name = req.body.name
+          var password= await argon2.hash(req.body.password)
+          var mail= req.body.mail
+          var role= req.body.role
+
+          const newFormation = await pool.query(
+            'INSERT INTO users (name,password,mail,role) VALUES ($1,$2,$3,$4)',
+            [name,password,mail,role]
+            );
+            console.log(newFormation)
+            if(newFormation)
+              res.send([{status: "success", message: "Account created"}]);
+            else
+              res.send([{status: "error", message: "Account not created"}]);
+    } catch (err) {
+        console.error(err.message);
+     }
+  });
 
 
   //update le role en former
@@ -146,6 +169,46 @@ router.get("/formerValidation", async (req, res) => {
         console.error(err.message);
      }
 })
+
+router.post('/authentification', async function(request, response) {
+
+
+  //Express Validator
+
+    // Execute SQL query that'll select the account from the database based on the specified username and password
+   pool.query('SELECT name, password FROM users WHERE name = $1', [request.body.pseudo], async function(error, results, fields) {
+      // If there is an issue with the query, output the error
+        if (error) throw error;
+        // If the account exists
+        if (results) {
+          // Create session into table session and save UUID
+          if (await argon2.verify(results.rows[0].password, request.body.password)){
+            const sessionId = crypto.randomUUID();
+            pool.query('INSERT INTO sessions (name, sessionUUID) VALUES ($1, $2)', [request.body.pseudo, sessionId], async (error, results, fields) => {
+              if (results) {
+                response.status(200).cookie("sessionId", sessionId, {
+                  secure: true,
+                  httpOnly: true,
+                  SameSite: 'none',
+                  maxAge: 1*60*60*3*1000, //3 hours GMT+1
+                  signed: true
+                }).send([{status: "success", message: "You are connected"}, {pseudo: request.body.pseudo}])
+              }
+              else {
+                response.status(500).send([{status: "error", message: "Internal server error"}])
+              }
+            })
+          }else {
+            response.send('Incorrect Username and/or Password!');
+          }
+
+        } else {
+            response.send('Incorrect Username and/or Password!');
+        }			
+		});
+
+});
+
 
 
 module.exports = router;

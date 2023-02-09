@@ -4,7 +4,6 @@ import Accueil from "./pages/Accueil";
 import Error from "./pages/Error";
 import Library from './pages/Library';
 import Inscription from './pages/Inscription';
-import PageConsultation from './components/PageConsultation';
 import PageCreation from './components/PageCreation';
 import CreationAppel from './pages/CreationAppel';
 import LibraryFormateur from './components/LibraryFormateur';
@@ -12,18 +11,13 @@ import LibraryAdmin from './components/LibraryAdmin';
 import FormateurAppel from './pages/FormateurAppel';
 import InscriptionAppel from './components/InscriptionAppel';
 import ConnexionAppel from './components/ConnexionAppel';
-import AccueilServeur from './pages/AccueilServeur';
 
 
 
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomNavbar from './components/NavBar';
-<<<<<<< Updated upstream
 import ConsultationAppel from './pages/ConsultationAppel';
-=======
-import ConsultationAppel from './pages/ConsultationAppel ';
->>>>>>> Stashed changes
 
 //<Route path="/consultation/:id" element={<PageConsultation data={"texte"} titre={"titre"} auteur={"auteur"}/>} />
 

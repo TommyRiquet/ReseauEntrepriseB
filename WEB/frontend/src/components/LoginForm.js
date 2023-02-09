@@ -1,6 +1,40 @@
 import {Button,Form, Row, Col,Container} from 'react-bootstrap';
 
+
+import salt from '../salt';
+import sha512 from 'js-sha512';
+
 function LoginForm() {
+
+
+  function handleClick(e) {
+    e.preventDefault();
+    
+    fetch('http://localhost:3001/users/authentification', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Credentials': 'include'
+
+      },
+      body: JSON.stringify({
+        pseudo: document.getElementById('formHorizontalEmail').value,
+        password: sha512(document.getElementById('formHorizontalPassword').value,salt)
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data[0].status === 'success') {
+          window.location.href = '/bibli';
+        }else{
+          console.log('error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    
+  }
   return (
     <>
       <Container className='center-container'>
@@ -27,7 +61,7 @@ function LoginForm() {
 
           <Form.Group as={Row} className="mb-3">
             <Col className='center-div'>
-              <Button type="submit"  variant="danger" onClick={e=>window.location.href='/connexionAppel'}>Se connecter</Button>
+              <Button type="submit"  variant="danger" onClick={e=>handleClick(e)}>Se connecter</Button>
             </Col>
           </Form.Group>
         </Form>

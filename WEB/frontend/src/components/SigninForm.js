@@ -3,6 +3,9 @@ import {Button,Form, Row, Col, Container} from 'react-bootstrap';
 //import * as Yup from 'yup';
 import ReCAPTCHA from "react-google-recaptcha";
 
+import salt from '../salt';
+import sha512 from 'js-sha512';
+
 function SigninForm() {
   const [validated, setValidated] = useState(false);
 
@@ -14,24 +17,50 @@ function SigninForm() {
 
   
   const handleSubmit = (event) => {
+    event.preventDefault();
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
     }
 
     const pseudo = event.target["formHorizontalPseudo"].value;
-
-    if(pseudo.current.value && password.current.value) {
+    if(pseudo && password) {
       const token = recaptchaRef.current.executeAsync();
       recaptchaRef.current.reset();
     }
 
     setValidated(true);
+    fetch('http://localhost:3001/users/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: event.target["formHorizontalPseudo"].value,
+        mail: event.target["formHorizontalEmail"].value,
+        password: sha512(event.target["formHorizontalPassword"].value,salt),
+        role: 'student',
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        if (data[0].status === 'success') {
+          window.location.href = '/inscription/Connection';
+        }else{
+          console.log('error');
+        }
+      }
+      )
+      .catch((error) => {
+        console.error('Error:', error);
+      }
+      );
+
   };
 
   function handleChangePassword(event){
-    console.log(event)
     if (confirmPassword.current.value === password.current.value) {
       return event.target.setCustomValidity("");
   }
