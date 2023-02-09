@@ -14,7 +14,7 @@ const registerAndLoginValidation = [
         .withMessage('Mot de passe nécessaire!')
         .isString({ checkFalsy : true})
         .withMessage('Le mot de passe doit être une chaine de caractère')
-        .isLength({ min : 8, max : 128})
+        .isLength({ min : 8})
         .withMessage('Le mot de passe doit faire minimum 8 caractères!'),
 
     body('mail')
@@ -22,7 +22,7 @@ const registerAndLoginValidation = [
         .withMessage('Une adresse mail est nécessaire!')
         .isString({ checkFalsy : true})
         .withMessage('L\'adresse mail doit être une chaine de caractère!')
-        .isLength({ min : 4, max : 128})
+        .isLength({ min : 4})
 ];
 
 module.exports = {
