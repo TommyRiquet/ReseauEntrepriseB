@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import PageConsultation from '../components/PageConsultation.js';
+import PageConsultation from '../components/PageConsultation';
 import {useParams} from 'react-router-dom';
 import config from '../config.json';
 
