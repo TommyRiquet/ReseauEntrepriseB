@@ -33,7 +33,7 @@ class PageCreation extends Component{
                     </div>
                 </Form>
                 <Button variant="outline-danger" onClick={e=>window.location.href='/bibli'+this.state.statut}>retour à la bibliothèque sans sauver</Button>
-                <Button variant="outline-danger" onClick={e=>window.location.href='/creationPost/'+this.state.titre+'/'+this.state.auteur+'/'+this.state.texte}>sauver</Button>
+                <Button variant="outline-danger" onClick={e=>window.location.href='/creationPush/'+this.state.titre+'/'+this.state.auteur+'/'+this.state.texte}>sauver</Button>
 
 
             </div>
